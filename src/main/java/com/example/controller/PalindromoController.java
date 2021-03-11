@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +22,15 @@ public class PalindromoController {
 	}
 	@PostMapping(consumes="application/json", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public PalindromoModel postResponseJsonContent(@RequestBody PalindromoModel palindromo) {
+	public ResponseEntity<PalindromoModel> postResponseJsonContent(@RequestBody PalindromoModel palindromo) {
+		String response = PalindromoService.getLargetsPalindrome(palindromo.getPalindromo());
+		//TODO 
+		//verificar que no sea vacía (responder con error)
+		if(!palindromo.getPalindromo().equals(""))
+		    return new ResponseEntity<>(new PalindromoModel(response), HttpStatus.OK);
+		else
+		    return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		
-	    return new PalindromoModel(PalindromoService.getLargetsPalindrome(palindromo.getPalindromo()));
+	   // return new PalindromoModel(response);
 	}
 }
