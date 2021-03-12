@@ -16,7 +16,6 @@ import com.example.model.UserModel;
 public class UserService implements UserDetailsService{
 	private List<UserModel> userList;
 	public UserService() {
-		// TODO Auto-generated constructor stub
 		this.userList = new ArrayList<UserModel>();
 		UserModel user = new UserModel();
 		user.setPassword("1234");
@@ -31,25 +30,23 @@ public class UserService implements UserDetailsService{
 	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		System.out.println("recibido:" + username);
-		System.out.println("ingresa method");
-		UserModel user = findByName(username);
-		System.out.println(user.getUser() +" "+ user.getPassword());
-		List<GrantedAuthority> roles = new ArrayList<>();
-		roles.add(new SimpleGrantedAuthority("ADMIN"));
-		UserDetails userDetails = new User(user.getUser(), user.getPassword(), roles);
-		return userDetails;
+		/*
+		 System.out.println(user.getUser() +" "+ user.getPassword());
+		 List<GrantedAuthority> roles = new ArrayList<>(); roles.add(new
+		 SimpleGrantedAuthority("ADMIN")); UserDetails userDetails = new
+		 User(user.getUser(), user.getPassword(), roles);
+		 */
+		//return userDetails;
+		return new User("edinson", "12345", new ArrayList<>());
 	}
 	
 	private UserModel findByName(String name) {
-		System.out.println("ingrea a bucar user");
-		System.out.println("user size" + this.userList.size());
 		UserModel aux = null;
 		for(int i = 0; i< this.userList.size(); i++) { 
-			if(name.equals(this.userList.get(i).getUser()))
-				System.out.println("ingresa al if");
+			if(name.equals(this.userList.get(i).getUser())) {
 				aux = this.userList.get(i);
+				break;
+			}
 		}
 		return aux;
 	}
