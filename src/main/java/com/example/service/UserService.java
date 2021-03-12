@@ -12,9 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.model.UserModel;
+
 @Service
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
 	private List<UserModel> userList;
+
 	public UserService() {
 		this.userList = new ArrayList<UserModel>();
 		UserModel user = new UserModel();
@@ -28,22 +30,22 @@ public class UserService implements UserDetailsService{
 		user.setUser("camila");
 		this.userList.add(user);
 	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		/*
-		 System.out.println(user.getUser() +" "+ user.getPassword());
-		 List<GrantedAuthority> roles = new ArrayList<>(); roles.add(new
-		 SimpleGrantedAuthority("ADMIN")); UserDetails userDetails = new
-		 User(user.getUser(), user.getPassword(), roles);
-		 */
-		//return userDetails;
+	/*	UserModel user = findByName(username);
+		List<GrantedAuthority> roles = new ArrayList<>();
+		roles.add(new SimpleGrantedAuthority("ADMIN"));
+		UserDetails userDetails = new User(user.getUser(), user.getPassword(), roles);
+
+		return userDetails;*/
 		return new User("edinson", "12345", new ArrayList<>());
 	}
-	
+
 	private UserModel findByName(String name) {
 		UserModel aux = null;
-		for(int i = 0; i< this.userList.size(); i++) { 
-			if(name.equals(this.userList.get(i).getUser())) {
+		for (int i = 0; i < this.userList.size(); i++) {
+			if (name.equals(this.userList.get(i).getUser())) {
 				aux = this.userList.get(i);
 				break;
 			}
