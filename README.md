@@ -28,3 +28,8 @@ _El algoritmo busca la solución apoyánsode en la estrategía divide y conquist
 
 
 ![N|Solid](https://jariasf.files.wordpress.com/2012/02/animated_bfs.gif)
+
+# DEFINICIÓN DE API
+
+_Consultar archivo swargger.yaml en la raíz del repositorio_
+
